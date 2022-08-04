@@ -21,7 +21,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     .options {
         color: white;
         font-size: 30px;

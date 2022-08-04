@@ -1,21 +1,21 @@
 <template>
     <Settings />
     <MainFrame />
-    <DayUpdates />
+    <DayTransactions />
 </template>
 
 <script>
 import Settings from './Settings.vue';
 import MainFrame from './MainFrame.vue';
-import DayUpdates from './DayUpdates.vue';
+import DayTransactions from './DayTransactions.vue';
 
 export default {
     name: 'TheBody',
     components: {
-        Settings,
-        MainFrame,
-        DayUpdates
-    }
+    Settings,
+    MainFrame,
+    DayTransactions
+}
 }
 </script>
 

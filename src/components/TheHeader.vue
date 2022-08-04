@@ -10,9 +10,10 @@
     }
 </script>
 
-<style>
+<style scoped>
     #header {
-        background-color: #f00;
+        background-color: pink;
         font-size: 30px;
+        text-align: center;
     }
 </style>
