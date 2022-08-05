@@ -1,5 +1,5 @@
 <template>
-    <TheHeader />
+    <TheHeader userName="Allan" />
     <TheBody />
 </template>
 
@@ -11,7 +11,7 @@ export default {
     components: {
         TheBody,
         TheHeader
-    }
+    },
 }
 
 </script>

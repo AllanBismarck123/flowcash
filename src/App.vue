@@ -1,19 +1,13 @@
 <template>
-  <TheHome />
-  <!-- <MainWindow /> -->
-  <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+  <div>
+    <router-view />
+  </div>
 </template>
 
 <script>
-// import MainWindow from './pages/MainWindow.vue';
-import TheHome from './pages/TheHome.vue';
 
 export default {
   name: 'App',
-  components: {
-    TheHome,
-    // MainWindow,
-}
 }
 </script>
 

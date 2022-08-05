@@ -6,63 +6,88 @@
             </div>
         </nav>
     </header>
-
     <main>
-        <div class="boxhome">
+        <form class="boxhome">
             <h1>Fazer login</h1>
             <div class="row">
                 <div class="input-field col s12">
-                    <input type="email" class="validate" id="email_login" >
+                    <input v-model="email_login" type="email" class="validate" id="email_login" >
                     <label for="email">Email</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input type="password" class="validate" id="password_login">
+                    <input v-model="password_login" type="password" class="validate" id="password_login">
                     <label for="password">Senha (mínimo 8 caracteres)</label>
                 </div>
             </div>
-             <a class="waves-effect waves-light btn-large" id="login">Entrar</a>
-        </div>
+             <router-link to="/main" v-on:click="loginUser" class="waves-effect waves-light btn-large" id="login">Entrar</router-link>
+        </form>
 
-        <div class="boxhome">
+        <form class="boxhome">
             <h1>Ainda não tem conta? Cadastre-se</h1>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input type="text" class="validate" id="name">
-                    <label for="password">Nome</label>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input v-model="name" type="text" class="validate" id="name">
+                        <label for="password">Nome</label>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input type="email" class="validate" id="email_register">
-                    <label for="email">Email</label>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input v-model="email" type="email" class="validate" id="email_register">
+                        <label for="email">Email</label>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input type="password" class="validate" id="password_register">
-                    <label for="password">Senha (mínimo 8 caracteres)</label>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input v-model="password" type="password" class="validate" id="password_register">
+                        <label for="password">Senha (mínimo 8 caracteres)</label>
+                    </div>
                 </div>
-            </div>
-            <a class="waves-effect waves-light btn-large" id="register">Cadastrar</a>
-        </div>
-
+                <button v-on:click.prevent="newUser()" class="waves-effect waves-light btn-large" id="register">Cadastrar</button>
+        </form>
     </main>
-
 </template>
 
 <script>
-
 export default {
     name: 'TheHome',
-}
+    data() {
+      return {
+        user: {},
+        name: "",
+        email: "",
+        password: "",
+        email_login: "",
+        password_login: "",
+        token: {}
+      };
+    },
+    methods: {
+        async newUser() {
+            const data = { name: this.name, email: this.email, password: this.password }
+            await this.$store.dispatch("registerUser", data)
+        },
+        async loginUser() {
+            const data = {email: this.email_login, password: this.password_login}
+            await this.$store.dispatch("login", data)
+            this.token = this.$store.getters.getLogin
+            console.log(this.token)
+        },
+        // async infoUserLogged() {
+        //     await this.$store.dispatch("infoUser")
+        //     this.user = this.$store.getters.getInfoUser
+        //     console.log(this.user)
+        // }
+    },
 
+}
 </script>
 
-<style scoped>
+<style >
     .nav-wrapper {
         padding-left: 5em;
+        background-color: #B80098;
     }
 
     main {
@@ -79,6 +104,11 @@ export default {
     h1 {
         font-size: 30px;
         text-align: center;
+    }
+
+    .btn-large {
+        margin-left: 10px;
+        background-color: #B80098;
     }
 
 </style>

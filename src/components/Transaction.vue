@@ -1,18 +1,20 @@
 <template>
-    <div id="update">
-        <h2>{{date}}</h2>
-        <div>{{type}}</div>
-        <div id="identificationUpdate">
-            <div>{{description}}</div>
-            <div>{{category}}</div>
+    <div class="col s12 m7 card horizontal header">
+        <div id="date-type">
+            <h3>{{date}}</h3>
+            <p>{{type}}</p>
         </div>
-        <div class="values">{{value}}</div>
+        <div class="card-stacked">
+            <h3>{{description}}</h3>
+            <p>{{category}}</p>
+        </div>
+        <div id="value">R${{value}}</div>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'UniqueUpdate',
+    name: 'TheTransaction',
     props: {
         description: String,
         category: String,
@@ -24,15 +26,32 @@ export default {
 </script>
 
 <style scoped>
-    #update {
+    .header {
         display: flex;
         flex-direction: row;
-        gap: 80px;
-        justify-content: center;
+        align-items: center;
+        justify-content: space-around;
+        gap: 4em;
+        padding: 0.5em 1.8em;
+        font-size: 1.1em;
+        color: black;
     }
-    
-    #identificationUpdate {
+
+    h3 {
+        margin: 0.1em;
+        font-size: 1.5em;
+    }
+
+    #date-type {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #FE6905;
+    }
+
+    #value {
+        color: #FE6905;
+        font-size: 1.5em;
     }
 </style>

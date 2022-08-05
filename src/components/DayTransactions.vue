@@ -11,15 +11,7 @@ import Transaction from './Transaction.vue';
 export default {
     name: 'DayTransactions',
     components: {
-        Transaction,
+        Transaction
     }
 }
 </script>
-
-<style scoped>
-    #DayTransactions {
-        background-color: darkgreen;
-        color: orange;
-        font-size: 30px;
-    }
-</style>

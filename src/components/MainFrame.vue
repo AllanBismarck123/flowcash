@@ -1,28 +1,28 @@
 <template>
-    <div id="mainframe">
-        <div id="frame1">
-            <div class="rowsmainframe">
-                <div>Receita</div>
-                <div class="values">valor</div>
+    <div class="card">
+        <div class="card-content">
+            <div id="receita" class="itens">
+                <p>Receita</p>
+                <p>Valor</p>
             </div>
-            <div class="rowsmainframe">
-                <div>Despesa</div>
-                <div class="values">valor</div>
-            </div>
-            <div class="rowsmainframe">
-                <div>Saldo</div>
-                <div class="values">valor</div>
+            <div id="despesa" class="itens">
+                <p>Despesa</p>
+                <p>Valor</p>
             </div>
         </div>
-        <div id="frame2">
-            <div class="rowsmainframe">
-                <div>Saldo Inicial</div>
-                <div class="values">valor</div>
-            </div>
-            <div class="rowsmainframe">
-                <div>Saldo Final</div>
-                <div class="values">valor</div>
-            </div>
+        <div class="card-action">
+            <p>Saldo</p>
+            <p>Valor</p>
+        </div>
+    </div>
+    <div class="card">
+       <div class="card-action">
+            <p>Saldo Inicial</p>
+            <p>Valor</p>
+        </div>
+        <div class="card-action">
+            <p>Saldo Final</p>
+            <p>Valor</p>
         </div>
     </div>
 </template>
@@ -36,19 +36,26 @@ export default {
 </script>
 
 <style scoped>
-    #mainframe {
-        background-color: blue;
-        color: white;
-        font-size: 30px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .rowsmainframe {
+    .itens, .card-action {
         display: flex;
         flex-direction: row;
-        gap: 100px;
-        justify-content: space-evenly;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0em;
+        font-size: 1.8em;
+        padding: 0.2vw 15vw;
+    }
+
+    .card-action {
+        color: #FF6A00;
+        padding: 0.5vw 16.5vw;
+    }
+
+    #despesa {
+        color: rgb(202, 1, 1);
+    }
+
+    #receita {
+        color: #52BF4E;
     }
 </style>
