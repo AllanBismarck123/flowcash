@@ -21,7 +21,7 @@
                     <label for="password">Senha (mínimo 8 caracteres)</label>
                 </div>
             </div>
-             <router-link to="/main" v-on:click="loginUser" class="waves-effect waves-light btn-large" id="login">Entrar</router-link>
+             <router-link to="/main" v-on:click="loginUser; infoUserLogged" class="waves-effect waves-light btn-large" id="login">Entrar</router-link>
         </form>
 
         <form class="boxhome">
@@ -71,8 +71,9 @@ export default {
         async loginUser() {
             const data = {email: this.email_login, password: this.password_login}
             await this.$store.dispatch("login", data)
-            this.token = this.$store.getters.getLogin
-            console.log(this.token)
+            // this.token = this.$store.getters.getToken
+            // console.log(this.token)
+            // this.$router.push("/main")
         },
         // async infoUserLogged() {
         //     await this.$store.dispatch("infoUser")

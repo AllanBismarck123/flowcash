@@ -12,6 +12,14 @@ export default {
         TheBody,
         TheHeader
     },
+    data() {
+        return {
+            aux: "",
+        }
+    },
+    created() {
+        // console.log(this.$store.getters.getToken)
+    },
 }
 
 </script>

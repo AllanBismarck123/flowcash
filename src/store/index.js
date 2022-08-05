@@ -8,18 +8,18 @@ export default createStore({
     user: [],
     categories: [],
     token: "",
-    login: {},
+    register: {},
     infoUser: ""
   },
   getters: {
     getUser(state) {
       return state.user;
     },
+    getRegister(state) {
+      return state.register;
+    },
     getToken(state) {
       return state.token;
-    },
-    getLogin(state) {
-      return state.login;
     },
     getInfoUser(state) {
       return state.infoUser;
@@ -29,11 +29,14 @@ export default createStore({
     SET_USER(state, user) {
       state.user = user;
     },
-    SET_TOKEN(state, token) {
-      state.token = token;
+    SET_REGISTER(state, register) {
+      state.register = register;
     },
-    SET_LOGIN(state, login) {
-      state.login = login;
+    SET_TOKEN(state, data) {
+      data = Object.values(data).toString()
+      data = data.split('|', 2)
+      data = "Bearer " + data[1];
+      state.token = data;
     },
     SET_INFOUSER(state, infoUser) {
       state.infoUser = infoUser;
@@ -57,7 +60,7 @@ export default createStore({
       .post(baseURL + "/register", {name, email, password})
       .then((response) => {
         if(response.status === 201) {
-          context.commit("SET_TOKEN", response.data);
+          context.commit("SET_REGISTER", response.data);
         } else {
             console.error(response.error);
         }
@@ -69,22 +72,12 @@ export default createStore({
       .post(baseURL + "/login", {email, password})
       .then((response) => {
         if(response.status === 200) {
-          context.commit("SET_LOGIN", response.data);
+          context.commit("SET_TOKEN", response.data);
         } else {
             console.error(response.error);
         }
       });
     }, 
-
-    // authentication(token) {
-    //   while(token.sbstr(0) === Number) {
-    //     token.slice(-1)
-    //   }
-    //   token.slice(-2);
-    //   token = "Bearer" + token;
-    //   console.log(token)
-    //   return token;
-    // },
 
     // async infoUser(context, token) {
     //   await axios
