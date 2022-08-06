@@ -1,27 +1,23 @@
 <template>
-    <div class="col s12 m7 card horizontal header">
-        <div id="date-type">
-            <h3>{{date}}</h3>
-            <p>{{type}}</p>
+    <div v-for="transaction in transactions" :key="transaction.id">
+        <div class="col s12 m7 card horizontal header">
+            <div id="date-type">
+                <h3>{{transaction.date}}</h3>
+                <p>{{transaction.type}}</p>
+            </div>
+            <div class="card-stacked">
+                <h3>{{transaction.description}}</h3>
+                <p>{{transaction.category}}</p>
+            </div>
+            <div id="value">R${{transaction.value}}</div>
         </div>
-        <div class="card-stacked">
-            <h3>{{description}}</h3>
-            <p>{{category}}</p>
-        </div>
-        <div id="value">R${{value}}</div>
     </div>
 </template>
 
 <script>
 export default {
     name: 'TheTransaction',
-    props: {
-        description: String,
-        category: String,
-        value: Number,
-        type:  String,
-        date: String
-    }
+    props: ["transactions"]
 }
 </script>
 

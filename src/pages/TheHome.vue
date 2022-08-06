@@ -21,7 +21,7 @@
                     <label for="password">Senha (mínimo 8 caracteres)</label>
                 </div>
             </div>
-             <router-link to="/main" v-on:click="loginUser; infoUserLogged" class="waves-effect waves-light btn-large" id="login">Entrar</router-link>
+             <button @click.prevent="loginUser" class="waves-effect waves-light btn-large" id="login">Entrar</button>
         </form>
 
         <form class="boxhome">
@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <input v-model="name" type="text" class="validate" id="name">
-                        <label for="password">Nome</label>
+                        <label for="name">Nome</label>
                     </div>
                 </div>
                 <div class="row">
@@ -44,7 +44,7 @@
                         <label for="password">Senha (mínimo 8 caracteres)</label>
                     </div>
                 </div>
-                <button v-on:click.prevent="newUser()" class="waves-effect waves-light btn-large" id="register">Cadastrar</button>
+                <button v-on:click="newUser()" class="waves-effect waves-light btn-large" id="register">Cadastrar</button>
         </form>
     </main>
 </template>
@@ -68,18 +68,20 @@ export default {
             const data = { name: this.name, email: this.email, password: this.password }
             await this.$store.dispatch("registerUser", data)
         },
+
         async loginUser() {
             const data = {email: this.email_login, password: this.password_login}
             await this.$store.dispatch("login", data)
-            // this.token = this.$store.getters.getToken
-            // console.log(this.token)
-            // this.$router.push("/main")
+            this.token = this.$store.getters.getToken
+            await this.infoUserLogged();
+            if(this.token !== null) {
+                this.$router.push({path: "/main"})
+            }
         },
-        // async infoUserLogged() {
-        //     await this.$store.dispatch("infoUser")
-        //     this.user = this.$store.getters.getInfoUser
-        //     console.log(this.user)
-        // }
+
+        async infoUserLogged() {
+            await this.$store.dispatch("infoUser")
+        }
     },
 
 }

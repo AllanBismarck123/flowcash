@@ -1,5 +1,5 @@
 <template>
-    <TheHeader userName="Allan" />
+    <TheHeader :userName="user.name" />
     <TheBody />
 </template>
 
@@ -14,11 +14,12 @@ export default {
     },
     data() {
         return {
-            aux: "",
+            user: {},
         }
     },
-    created() {
-        // console.log(this.$store.getters.getToken)
+    mounted() {
+        this.user = this.$store.getters.getUser
+        console.log(this.user)
     },
 }
 

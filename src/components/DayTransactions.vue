@@ -1,7 +1,6 @@
 <template>
     <div id="DayTransactions">
-       <Transaction description="Salário" category="Categoria Selecionada" value=500.0 type="Receita" date="03/08"/>
-       <Transaction description="Água" category="Categoria Selecionada" value=10.0 type="Despesa" date="03/08" />
+       <Transaction :transactions="transactions" />
     </div>
 </template>
 
@@ -10,8 +9,32 @@ import Transaction from './Transaction.vue';
 
 export default {
     name: 'DayTransactions',
+    data() {
+        return {
+            user: {},
+            transactions: []
+        }
+    },
     components: {
         Transaction
+    },
+    mounted() {
+        this.user = this.$store.getters.getUser
+        this.showAllTransactions(this.user.id)
+    },
+    methods: {
+        async showAllTransactions(id) {
+            await this.$store.dispatch("showTransactions", {id: id})
+            await this.tratementDates()
+        },
+        tratementDates() {
+            this.transactions = this.$store.getters.getTransactions
+            this.transactions.forEach((i) => {
+                i.date = i.date.split("-", 3)
+                i.date = i.date[2].split("T", 1) + '/' + i.date[1] + '/' + i.date[0]
+            });
+        }
     }
 }
+
 </script>

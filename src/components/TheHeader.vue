@@ -9,7 +9,7 @@
                 <li><router-link to="/main" class="menubar">Home</router-link></li>
                 <li><router-link to="/transactions" class="menubar">Transações</router-link></li>
                 <li><router-link to="/categories" class="menubar">Categorias</router-link></li>
-                <li><router-link to="/" class="menubar">Sair</router-link></li>
+                <li><a v-on:click.prevent="logoffUser" class="menubar">Sair</a></li>
             </ul>
         </div>
     </nav>
@@ -20,6 +20,14 @@
         name: 'TheHeader',
         props: {
             userName: String,
+        },
+        methods: {
+            async logoffUser() {
+                await this.$store.dispatch("logoff")
+                if(this.$store.getters.getToken === "") {
+                    this.$router.push({path: "/"})
+                }
+            }
         }
     }
 </script>
@@ -55,12 +63,6 @@
     ul {
         display: flex;
         flex-direction: row;
-        align-items: center;
-    }
-
-    router-link {
-        display: flex;
-        flex-direction: column;
         align-items: center;
     }
 

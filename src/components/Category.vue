@@ -1,18 +1,30 @@
 <template>
+<div v-for="category in categories" :key="category.name">
     <div class="col s12 m7 card horizontal header">
-        <h3>{{name}}</h3>
+        <h3>{{category.name}}</h3>
         <div>
             <a class="btn-floating btn-large waves-effect waves-light red"><i id="edit" class="material-icons">edit</i></a>
-            <a class="btn-floating btn-large waves-effect waves-light red"><i id="delete" class="material-icons">delete</i></a>
+            <a @click.prevent="deleteCategory(category.id)" class="btn-floating btn-large waves-effect waves-light red"><i id="delete" class="material-icons">delete</i></a>
         </div>
     </div>
+</div>
 </template>
 
 <script>
+
 export default {
     name: 'TheCategory',
-    props: {
-        name: String,
+    props: ["categories"],
+    data() {
+        return {
+            id: "",
+        }
+    },
+    methods: {
+        async deleteCategory(id) {
+            await this.$store.dispatch("deleteCategory", {id: id})
+            console.log(this.categories[0])
+        }
     }
 }
 </script>

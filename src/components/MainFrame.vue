@@ -3,26 +3,26 @@
         <div class="card-content">
             <div id="receita" class="itens">
                 <p>Receita</p>
-                <p>Valor</p>
+                <p>valor</p>
             </div>
             <div id="despesa" class="itens">
                 <p>Despesa</p>
-                <p>Valor</p>
+                <p>valor</p>
             </div>
         </div>
         <div class="card-action">
             <p>Saldo</p>
-            <p>Valor</p>
+            <p>valor</p>
         </div>
     </div>
     <div class="card">
        <div class="card-action">
             <p>Saldo Inicial</p>
-            <p>Valor</p>
+            <p>valor</p>
         </div>
         <div class="card-action">
             <p>Saldo Final</p>
-            <p>Valor</p>
+            <p>valor</p>
         </div>
     </div>
 </template>
@@ -31,6 +31,11 @@
 
 export default {
     name: 'MainFrame',
+    data() {
+        return {
+            values: "",
+        }
+    },
 }
 
 </script>
