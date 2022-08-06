@@ -1,14 +1,21 @@
 <template>
     <TheHeader :userName="user.name"/>
 
-    <div v-if="buttonCreate" id="category-create">
+    <div id="category-create">
         <span>Criar Categoria</span>
-        <a v-on:click.prevent="alternateBoxButton" class="btn-floating btn-large waves-effect waves-light red"><i id="add" class="material-icons">add</i></a>
+        <a href="#modalCreateCategory" class="modal-trigger btn-floating btn-large waves-effect waves-light red"><i id="add" class="material-icons">add</i></a>
     </div>
-    <form v-if="boxCreate" class="row">
-        <label for="name">Digite o nome da categoria</label>
-        <input v-model="name" type="text" class="validate" id="name" required>
-        <button v-on:click.prevent="alternateBoxButton(); createCategory();" class="waves-effect waves-light btn-large" id="register">Criar categoria</button>
+
+    <!-- Modal Structure -->
+    <form id="modalCreateCategory" class="modal">
+        <div class="modal-content">
+            <h4>Digite o nome da categoria</h4>
+            <input v-model="name" type="text" class="validate" id="name" required>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-close btn-flat">Cancelar</a>
+            <a @click="createCategory" class="modal-close waves-effect btn-flat">Criar categoria</a>
+        </div>
     </form>
 
     <TheCategory :categories="categories"/>
@@ -32,11 +39,17 @@ export default {
             user: {}
         }
     },
-    mounted() {
+    async created() {
+        this.$store.getters.fixedToken
+        await this.$store.dispatch("infoUser")
         this.user = this.$store.getters.getUser
+        console.log("created " + this.$store.getters.getToken)
+    },
+    mounted() {
         this.showAllCategories()
-        this.boxCreate = false
-        this.buttonCreate = true
+        var elems = document.querySelectorAll('.modal');
+        // eslint-disable-next-line no-undef
+        this.modals = M.Modal.init(elems);
     },
     methods: {
         async showAllCategories() {
@@ -48,21 +61,10 @@ export default {
         async createCategory() {
             await this.$store.dispatch("createCategory", {name: this.name})
             this.categories = this.$store.getters.getCategories
-            console.log(this.categories[0])
-            // this.showAllCategories()
-            this.forceUpdate()
+            this.showAllCategories()
             this.name=""
+            console.log(this.categories[0])
         },
-
-        alternateBoxButton() {
-            if(this.boxCreate === false) {
-                this.boxCreate = true
-                this.buttonCreate = false
-            } else {
-                this.boxCreate = false
-                this.buttonCreate = true
-            }
-        }
 
     },
 }

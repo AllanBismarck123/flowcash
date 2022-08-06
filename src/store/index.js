@@ -3,6 +3,7 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: "https://teste7.flowcash.app/api",
+  Authorization: ""
 })
 
 export default createStore({
@@ -23,6 +24,11 @@ export default createStore({
     },
     getToken(state) {
       return state.token;
+    },
+    fixedToken(state) {
+      api.defaults.headers.Authorization = localStorage.getItem('token')
+      state.token = localStorage.getItem('token')
+      return state
     },
     getCategories(state) {
       return state.categories
@@ -48,11 +54,12 @@ export default createStore({
       data = data.split('|', 2)
       data = "Bearer " + data[1];
       state.token = data;
-      api.defaults.headers.common['Authorization'] = data;
+      api.defaults.headers.Authorization = data;
+      localStorage.setItem('token', data)
     },
-
+ 
     REMOVE_TOKEN(state, data) {
-      api.defaults.headers.common['Authorization'] = data
+      localStorage.setItem('token', "")
       state.token = data
     },
 
@@ -90,7 +97,7 @@ export default createStore({
             console.error(response.error);
         }
       });
-      console.log("header da api " + api.defaults.headers.common['Authorization'])
+      console.log("header da api " + this.getters.getToken)
     }, 
 
     async logoff(context) {
@@ -99,7 +106,7 @@ export default createStore({
       } catch (error) {
           console.log(error)
       }
-      console.log("header da api " + api.defaults.headers.common['Authorization'])
+      console.log("header da api " + this.getters.getToken)
     },
 
     async infoUser(context) {

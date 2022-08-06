@@ -1,14 +1,32 @@
 <template>
     <TheHeader :userName="user.name"/>
 
-    <div v-if="buttonCreate" id="transaction-create">
+    <div id="transaction-create">
         <span>Criar Transação</span>
-        <a v-on:click.prevent="alternateBoxButton" class="btn-floating btn-large waves-effect waves-light red"><i id="add" class="material-icons">add</i></a>
+        <a href="#modal1" class="modal-trigger btn-floating btn-large waves-effect waves-light red"><i id="add" class="material-icons">add</i></a>
     </div>
-    <form v-if="boxCreate" class="row">
-        <label for="name">Digite a descrição da transação</label>
-        <input v-model="name" type="text" class="validate" id="name" required>
-        <button v-on:click.prevent="alternateBoxButton(); " class="waves-effect waves-light btn-large" id="register">Criar Transação</button>
+
+    <!-- Modal Structure -->
+    <form id="modal1" class="modal">
+        <div class="modal-content">
+            <label>Digite a descrição da transação</label>
+            <input v-model="name" type="text" class="validate" id="name" required>
+            <!-- <label>Digite a descrição da transação</label>
+            <input v-model="name" type="radio" class="validate" id="name" required>
+            <div class="input-field col s12">
+                <select>
+                <option value="" disabled selected>Choose your option</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+                </select>
+                <label>Materialize Select</label>
+            </div> -->
+        </div>
+        <div class="modal-footer">
+            <a class="modal-close btn-flat">Cancelar</a>
+            <a href="" @click="createTransaction" class="modal-close waves-effect btn-flat">Criar transação</a>
+        </div>
     </form>
 
     <DayTransactions />
@@ -28,21 +46,23 @@ export default {
             user: {},
             boxCreate: false,
             buttonCreate: true,
+            modals: [],
+            selects: []
         }
+    },
+    async created() {
+        this.$store.getters.fixedToken
+        await this.$store.dispatch("infoUser")
+        this.user = this.$store.getters.getUser
+        console.log("created " + this.$store.getters.getToken)
     },
     mounted() {
-        this.user = this.$store.getters.getUser
-    },
-    methods: {
-        alternateBoxButton() {
-            if(this.boxCreate === false) {
-                this.boxCreate = true
-                this.buttonCreate = false
-            } else {
-                this.boxCreate = false
-                this.buttonCreate = true
-            }
-        }
+        var elems = document.querySelectorAll('.modal');
+        // eslint-disable-next-line no-undef
+        this.modals = M.Modal.init(elems);
+        // var elems2 = document.querySelectorAll('select');
+        // // eslint-disable-next-line no-undef
+        // this.selects = M.FormSelect.init(elems2, options);
     },
 }
 </script>

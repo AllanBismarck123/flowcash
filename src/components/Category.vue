@@ -4,9 +4,20 @@
         <h3>{{category.name}}</h3>
         <div>
             <a class="btn-floating btn-large waves-effect waves-light red"><i id="edit" class="material-icons">edit</i></a>
-            <a @click.prevent="deleteCategory(category.id)" class="btn-floating btn-large waves-effect waves-light red"><i id="delete" class="material-icons">delete</i></a>
+            <a @click="deleteCategory(category.id)" class="modal-trigger btn-floating btn-large waves-effect waves-light red"><i id="delete" class="material-icons">delete</i></a>
         </div>
     </div>
+
+    <!-- Modal Structure
+    <div id="modalDeleteCategory" class="modal">
+        <div class="modal-content">
+        <h4>Tem certeza que deseja excluir {{category.name}}?</h4>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-close btn-flat">Cancelar</a>
+            <a @click.prevent="deleteCategory(category.id)" class="modal-close waves-effect btn-flat">Confirmar</a>
+        </div>
+    </div> -->
 </div>
 </template>
 
@@ -18,7 +29,13 @@ export default {
     data() {
         return {
             id: "",
+            // modals: []
         }
+    },
+    mounted() {
+        // var elems = document.querySelectorAll('.modal');
+        // // eslint-disable-next-line no-undef
+        // this.modals = M.Modal.init(elems);
     },
     methods: {
         async deleteCategory(id) {

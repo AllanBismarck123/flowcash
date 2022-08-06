@@ -17,9 +17,11 @@ export default {
             user: {},
         }
     },
-    mounted() {
+    async created() {
+        this.$store.getters.fixedToken
+        await this.$store.dispatch("infoUser")
         this.user = this.$store.getters.getUser
-        console.log(this.user)
+        console.log("created " + this.$store.getters.getToken)
     },
 }
 
