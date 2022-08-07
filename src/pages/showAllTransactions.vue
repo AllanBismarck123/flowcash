@@ -7,29 +7,18 @@
     </div>
 
     <!-- Modal Structure -->
-    <form id="modal1" class="modal">
+    <!-- <form id="modal1" class="modal">
         <div class="modal-content">
             <label>Digite a descrição da transação</label>
             <input v-model="name" type="text" class="validate" id="name" required>
-            <!-- <label>Digite a descrição da transação</label>
-            <input v-model="name" type="radio" class="validate" id="name" required>
-            <div class="input-field col s12">
-                <select>
-                <option value="" disabled selected>Choose your option</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
-                </select>
-                <label>Materialize Select</label>
-            </div> -->
         </div>
         <div class="modal-footer">
             <a class="modal-close btn-flat">Cancelar</a>
-            <a href="" @click="createTransaction" class="modal-close waves-effect btn-flat">Criar transação</a>
+            <a class="modal-close btn-flat">Criar transação</a>
         </div>
-    </form>
+    </form> -->
 
-    <DayTransactions />
+    <DayTransactions :showAllTransactions="showAllTransactions" />
 </template>
 
 <script>
@@ -47,7 +36,8 @@ export default {
             boxCreate: false,
             buttonCreate: true,
             modals: [],
-            selects: []
+            selects: [],
+            name: ""
         }
     },
     async created() {
@@ -63,6 +53,20 @@ export default {
         // var elems2 = document.querySelectorAll('select');
         // // eslint-disable-next-line no-undef
         // this.selects = M.FormSelect.init(elems2, options);
+    },
+    methods: {
+        async showAllTransactions(id) {
+            console.log("showAllTransactions")
+            await this.$store.dispatch("showTransactions", {id: id})
+            this.transactions = this.$store.getters.getTransactions
+            this.tratamentDates()
+        },
+        tratamentDates() {
+            this.transactions.forEach((i) => {
+                i.date = i.date.split("-", 3)
+                i.date = i.date[2].split("T", 1) + '/' + i.date[1] + '/' + i.date[0]
+            });
+        }
     },
 }
 </script>

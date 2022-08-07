@@ -1,42 +1,26 @@
 <template>
     <TheHeader :userName="user.name"/>
-
-    <div id="category-create">
-        <span>Criar Categoria</span>
-        <a href="#modalCreateCategory" class="modal-trigger btn-floating btn-large waves-effect waves-light red"><i id="add" class="material-icons">add</i></a>
-    </div>
-
-    <!-- Modal Structure -->
-    <form id="modalCreateCategory" class="modal">
-        <div class="modal-content">
-            <h4>Digite o nome da categoria</h4>
-            <input v-model="name" type="text" class="validate" id="name" required>
-        </div>
-        <div class="modal-footer">
-            <a class="modal-close btn-flat">Cancelar</a>
-            <a @click="createCategory" class="modal-close waves-effect btn-flat">Criar categoria</a>
-        </div>
-    </form>
-
-    <TheCategory :categories="categories"/>
+    <CreateCategory :showAllCategories="showAllCategories" :createCategory="createCategory" />
+    <TheCategory :showAllCategories="showAllCategories" :categories="categories"/>
 </template>
 
 <script>
 import TheHeader from '../components/TheHeader.vue'
-import TheCategory from '../components/Category.vue'
+import TheCategory from '../components/TheCategory.vue'
+import CreateCategory from '@/components/CreateCategory.vue'
 
 export default {
     components: {
-        TheHeader,
-        TheCategory,
-    },
+    TheHeader,
+    TheCategory,
+    CreateCategory,
+},
     data() {
         return {
             categories: [],
-            boxCreate: false,
-            buttonCreate: true,
-            name: "",
-            user: {}
+            user: {},
+            id: "",
+            modals: []
         }
     },
     async created() {
@@ -45,8 +29,8 @@ export default {
         this.user = this.$store.getters.getUser
         console.log("created " + this.$store.getters.getToken)
     },
-    mounted() {
-        this.showAllCategories()
+    async mounted() {
+        await this.showAllCategories()
         var elems = document.querySelectorAll('.modal');
         // eslint-disable-next-line no-undef
         this.modals = M.Modal.init(elems);
@@ -55,17 +39,15 @@ export default {
         async showAllCategories() {
             await this.$store.dispatch("showCategories")
             this.categories = this.$store.getters.getCategories
-            console.log(this.categories[0])
+            console.log("showAllCategories " + this.categories[0])
         },
 
-        async createCategory() {
-            await this.$store.dispatch("createCategory", {name: this.name})
+        async createCategory(name) {
+            await this.$store.dispatch("createCategory", {name: name})
             this.categories = this.$store.getters.getCategories
             this.showAllCategories()
-            this.name=""
-            console.log(this.categories[0])
+            console.log("createCategory " + this.categories[0])
         },
-
     },
 }
 </script>

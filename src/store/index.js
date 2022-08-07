@@ -12,8 +12,9 @@ export default createStore({
     categories: [],
     token: "",
     register: {},
-    delete: {},
-    transactions: []
+    deleteCategory: "",
+    transactions: [],
+    edit: {}
   },
   getters: {
     getUser(state) {
@@ -33,11 +34,14 @@ export default createStore({
     getCategories(state) {
       return state.categories
     },
-    getDelete(state) {
-      return state.delete
+    getDeleteCategory(state) {
+      return state.deleteCategory
     },
     getTransactions(state) {
       return state.transactions
+    },
+    getEdit(state) {
+      return state.edit
     }
   },
   mutations: {
@@ -66,12 +70,16 @@ export default createStore({
     SET_CATEGORIES(state, categories) {
       state.categories = categories.data
     },
-    SET_DELETE(state, data) {
-      state.delete = data
+    async SET_DELETE_CATEGORY(state, data) {
+      state.deleteCategory = data
     },
 
     SET_TRANSACTIONS(state, transactions) {
       state.transactions = transactions.data
+    },
+
+    SET_EDIT(state, edit) {
+      state.edit = edit
     }
   },
   actions: {
@@ -132,6 +140,19 @@ export default createStore({
             }
           });
       },
+
+      async editCategory(context, {name, id}) {
+        await api
+        .put('/categories' + '/' + id, {name})
+        .then((response) => {
+            if (response.status === 200) {
+              context.commit("SET_EDIT", response.data);
+              console.log(this.state.categories)
+            } else {
+              console.error(response.error);
+            }
+          });
+      },
       
       async showCategories(context) {
         await api
@@ -150,7 +171,7 @@ export default createStore({
         .delete('/categories'+'/'+ id)
         .then((response) => {
             if (response.status === 204) {
-              context.commit("SET_DELETE", response.data);
+              context.commit("SET_DELETE_CATEGORY", response.data);
             } else {
               console.error(response.error);
             }
