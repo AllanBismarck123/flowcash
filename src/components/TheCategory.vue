@@ -3,8 +3,8 @@
     <div class="col s12 m7 card horizontal header">
         <h3 class="option">{{category.name}}</h3>
         <div>
-            <a href="#modalEditCategory" class="modal-trigger btn-floating btn-large waves-effect waves-light red option"><i id="edit" class="material-icons">edit</i></a>
-            <a href="#modalDeleteCategory" class="modal-trigger btn-floating btn-large red option"><i id="delete" class="material-icons">delete</i></a>
+            <a @click="this.categoryId=category.id" href="#modalEditCategory" class="modal-trigger btn-floating btn-large waves-light red option"><i id="edit" class="material-icons">edit</i></a>
+            <a @click="this.categoryId=category.id; this.categoryName=category.name" href="#modalDeleteCategory" class="modal-trigger btn-floating btn-large red option"><i id="delete" class="material-icons">delete</i></a>
         </div>
     </div>
 
@@ -16,18 +16,18 @@
         </div>
         <div class="modal-footer">
             <a class="modal-close btn-flat">Cancelar</a>
-            <a @click="editCategory(newName, category.id)" class="modal-close btn-flat">Atualizar categoria</a>
+            <a @click="editCategory(newName, this.categoryId)" class="modal-close btn-flat">Atualizar categoria</a>
         </div>
     </form>
 
     <!-- DELETE CATEGORY -->
     <form id="modalDeleteCategory" class="modal">
         <div class="modal-content">
-            <h4>Tem certeza que deseja apagar {{category.name}}?</h4>
+            <h4>Tem certeza que deseja apagar {{this.categoryName}}?</h4>
         </div>
         <div class="modal-footer">
             <a class="modal-close btn-flat">Cancelar</a>
-            <a @click="deleteCategory(category.id)" class="modal-close btn-flat">Confirmar</a>
+            <a @click="deleteCategory(this.categoryId)" class="modal-close btn-flat">Confirmar</a>
         </div>
     </form>
 </div>
@@ -45,7 +45,9 @@ export default {
             permissionButtons: false,
             optionsButtons: true,
             newName: "",
-            modals: []
+            modals: [],
+            categoryId: 0,
+            categoryName: ""
         }
     },
     props: {
