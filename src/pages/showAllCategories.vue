@@ -1,19 +1,19 @@
 <template>
     <TheHeader :userName="user.name"/>
-    <CreateCategory :showAllCategories="showAllCategories" :createCategory="createCategory" />
-    <TheCategory :showAllCategories="showAllCategories" :categories="categories"/>
+    <!-- <CreateCategory :showAllCategories="showAllCategories" :createCategory="createCategory" /> -->
+    <TheCategory :showAllCategories="showAllCategories" :createCategory="createCategory" :categories="categories"/>
 </template>
 
 <script>
 import TheHeader from '../components/TheHeader.vue'
 import TheCategory from '../components/TheCategory.vue'
-import CreateCategory from '@/components/CreateCategory.vue'
+// import CreateCategory from '@/components/CreateCategory.vue'
 
 export default {
     components: {
     TheHeader,
     TheCategory,
-    CreateCategory,
+    // CreateCategory,
 },
     data() {
         return {
@@ -39,14 +39,12 @@ export default {
         async showAllCategories() {
             await this.$store.dispatch("showCategories")
             this.categories = this.$store.getters.getCategories
-            console.log("showAllCategories " + this.categories[0])
         },
 
         async createCategory(name) {
             await this.$store.dispatch("createCategory", {name: name})
             this.categories = this.$store.getters.getCategories
-            this.showAllCategories()
-            console.log("createCategory " + this.categories[0])
+            location.reload()
         },
     },
 }
