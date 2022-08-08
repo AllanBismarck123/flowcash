@@ -2,7 +2,7 @@
     <nav>
         <div class="nav-wrapper">
             <div id="title">
-                <a href="#" class="brand-logo">FLOWCASH</a>
+                <a href="#" class="brand-logo">FlowCash</a>
                 <div id="username" href="#" class="brand-logo">Bem vindo, {{userName}}</div>
             </div> 
             <ul id="nav-mobile" class="right hide-on-med-and-down">

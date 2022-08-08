@@ -1,19 +1,16 @@
 <template>
     <TheHeader :userName="user.name"/>
-    <!-- <CreateCategory :showAllCategories="showAllCategories" :createCategory="createCategory" /> -->
     <TheCategory :showAllCategories="showAllCategories" :createCategory="createCategory" :categories="categories"/>
 </template>
 
 <script>
 import TheHeader from '../components/TheHeader.vue'
 import TheCategory from '../components/TheCategory.vue'
-// import CreateCategory from '@/components/CreateCategory.vue'
 
 export default {
     components: {
-    TheHeader,
-    TheCategory,
-    // CreateCategory,
+        TheHeader,
+        TheCategory,
 },
     data() {
         return {

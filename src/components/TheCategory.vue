@@ -1,5 +1,5 @@
 <template>
-    <div id="category-create">
+    <div class="button-create">
         <span>Criar Categoria</span>
         <a href="#modalCreateCategory" class="modal-trigger btn-floating btn-large red"><i id="add" class="material-icons">add</i></a>
     </div>
@@ -11,7 +11,7 @@
             <input v-model="name" type="text" class="validate">
         </div>
         <div class="modal-footer">
-            <a href="" class="modal-close btn-flat">Cancelar</a>
+            <a class="modal-close btn-flat">Cancelar</a>
             <a @click="createCategory(this.name);" class="modal-close btn-flat">Criar categoria</a>
         </div>
     </form>
@@ -24,6 +24,7 @@
             <a @click="this.categoryId=category.id; this.categoryName=category.name" href="#modalDeleteCategory" class="modal-trigger btn-floating btn-large red option"><i id="delete" class="material-icons">delete</i></a>
         </div>
     </div>
+</div>
 
     <!-- EDIT CATEGORY -->
     <form id="modalEditCategory" class="modal">
@@ -47,7 +48,6 @@
             <a @click="deleteCategory(this.categoryId)" class="modal-close btn-flat">Confirmar</a>
         </div>
     </form>
-</div>
 
 </template>
 
@@ -94,7 +94,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
     .header {
         display: flex;
         flex-direction: row;
@@ -136,7 +136,7 @@ export default {
         display: flex;
     }
 
-    #category-create {
+    .button-create {
         display: flex;
         flex-direction: row;
         align-items: center;

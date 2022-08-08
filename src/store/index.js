@@ -12,7 +12,7 @@ export default createStore({
     categories: [],
     token: "",
     register: {},
-    deleteCategory: "",
+    delete: "",
     transactions: [],
     edit: {}
   },
@@ -34,8 +34,8 @@ export default createStore({
     getCategories(state) {
       return state.categories
     },
-    getDeleteCategory(state) {
-      return state.deleteCategory
+    getDelete(state) {
+      return state.delete
     },
     getTransactions(state) {
       return state.transactions
@@ -70,7 +70,7 @@ export default createStore({
     SET_CATEGORIES(state, categories) {
       state.categories = categories.data
     },
-    async SET_DELETE_CATEGORY(state, data) {
+    async SET_DELETE(state, data) {
       state.deleteCategory = data
     },
 
@@ -171,26 +171,39 @@ export default createStore({
         .delete('/categories'+'/'+ id)
         .then((response) => {
             if (response.status === 204) {
-              context.commit("SET_DELETE_CATEGORY", response.data);
+              context.commit("SET_DELETE", response.data);
             } else {
               console.error(response.error);
             }
           });
       },
 
-      // async createTransaction(context, {category_id, user_id, description, date, status, type, value}) {
-      //   await api
-      //   .post('/transactions', {category_id, user_id, description, date, status, type, value})
-      //   .then((response) => {
-      //       if (response.status === 201) {
-      //         context.commit("SET_REGISTER", response.data);
-      //       } else {
-      //         console.error(response.error);
-      //       }
-      //     });
-      // },
+      async createTransaction(context, {category_id, user_id, description, date, status, type, value}) {
+        await api
+        .post('/transactions', {category_id, user_id, description, date, status, type, value})
+        .then((response) => {
+            if (response.status === 201) {
+              context.commit("SET_REGISTER", response.data);
+            } else {
+              console.error(response.error);
+            }
+          });
+      },
+
+      async deleteTransaction(context, { id }) {
+        await api
+        .delete('/transactions/' + id)
+        .then((response) => {
+            if (response.status === 201) {
+              context.commit("SET_DELETE", response.data);
+            } else {
+              console.error(response.error);
+            }
+          });
+      },
       
       async showTransactions(context, {id}) {
+        console.log(id)
         await api
         .get('users/' + id + '/transactions')
         .then((response) => {

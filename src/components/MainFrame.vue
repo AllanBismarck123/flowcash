@@ -2,27 +2,27 @@
     <div class="card">
         <div class="card-content">
             <div id="receita" class="itens">
-                <p>Receita</p>
-                <p>valor</p>
+                <p>Receitas</p>
+                <p>R$ {{valueRevenue}},00</p>
             </div>
             <div id="despesa" class="itens">
-                <p>Despesa</p>
-                <p>valor</p>
+                <p>Despesas</p>
+                <p>R$ {{valueExpense}},00</p>
             </div>
         </div>
         <div class="card-action">
             <p>Saldo</p>
-            <p>valor</p>
+            <p>R$ {{totalBalance}},00</p>
         </div>
     </div>
     <div class="card">
        <div class="card-action">
-            <p>Saldo Inicial</p>
-            <p>valor</p>
+            <p>Saldo inicial do dia</p>
+            <p>R$ {{initialDayBalance}},00</p>
         </div>
         <div class="card-action">
-            <p>Saldo Final</p>
-            <p>valor</p>
+            <p>Saldo final do dia</p>
+            <p>R$ {{finalDayBalance}},00</p>
         </div>
     </div>
 </template>
@@ -36,6 +36,13 @@ export default {
             values: "",
         }
     },
+    props: {
+        valueExpense: Number,
+        valueRevenue: Number,
+        totalBalance: Number,
+        initialDayBalance: Number,
+        finalDayBalance:Number
+    }
 }
 
 </script>

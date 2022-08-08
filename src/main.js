@@ -3,6 +3,7 @@ import App from './App.vue'
 import 'materialize-css';
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min.js'
+import 'materialize-css/dist/js/materialize.js'
 import 'material-icons';
 import 'material-icons/css/material-icons.css';
 import 'material-icons/css/material-icons.min.css'
