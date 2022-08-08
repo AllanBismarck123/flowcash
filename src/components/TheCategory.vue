@@ -19,7 +19,7 @@
 <div v-for="category in categories" :key="category.id">
     <div class="col s12 m7 card horizontal header">
         <h3 class="option">{{category.name}}</h3>
-        <div>
+        <div id="options-buttons">
             <a @click="this.categoryId=category.id" href="#modalEditCategory" class="modal-trigger btn-floating btn-large waves-light red option"><i id="edit" class="material-icons">edit</i></a>
             <a @click="this.categoryId=category.id; this.categoryName=category.name" href="#modalDeleteCategory" class="modal-trigger btn-floating btn-large red option"><i id="delete" class="material-icons">delete</i></a>
         </div>
@@ -143,7 +143,7 @@ export default {
         padding: 2vw;
     }
 
-    @media screen and (max-width: 700px) {
+    @media screen and (max-width: 850px) {
         h3 {
             font-size: 4.5vw;
             padding-left: 2vw;
@@ -151,10 +151,28 @@ export default {
 
         span {
             font-size: 4.5vw;
+        }
+
+        .btn-large {
+            width: 6vw;
+            height: 6vw;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .material-icons {
+            width: 100%;
+        }
+
+        #options-buttons {
+            display: flex;
+            flex-direction: row;
         }
     }
 
-    @media screen and (max-width: 450px) {
+    @media screen and (max-width: 500px) {
         h3 {
             font-size: 5.5vw;
             padding-left: 2vw;
@@ -162,6 +180,11 @@ export default {
 
         span {
             font-size: 5.5vw;
+        }
+
+        .btn-large {
+            width: 9vw;
+            height: 9vw;
         }
     }
 

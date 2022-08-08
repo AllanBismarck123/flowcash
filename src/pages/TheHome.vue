@@ -2,7 +2,7 @@
     <header>
         <nav>
             <div class="nav-wrapper">
-                <div class="brand-logo">FLOWCASH</div>
+                <div class="brand-logo">FlowCash</div>
             </div>
         </nav>
     </header>
@@ -44,9 +44,19 @@
                         <label for="password">Senha (mínimo 8 caracteres)</label>
                     </div>
                 </div>
-                <button v-on:click="newUser()" class="waves-effect waves-light btn-large" id="register">Cadastrar</button>
+                <a @click.prevent="newUser" href="#modalRegister" class="waves-effect waves-light btn-large modal-trigger" id="register">Cadastrar</a>
         </form>
     </main>
+
+    <!-- REGISTER -->
+    <form id="modalRegister" class="modal">
+        <div class="modal-content">
+            <h4>Usuário cadastrado com sucesso! Faça o login para entrar.</h4>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-close btn-flat">Fechar</a>
+        </div>
+    </form>
 </template>
 
 <script>
@@ -63,6 +73,7 @@ export default {
         token: {}
       };
     },
+
     methods: {
         async newUser() {
             const data = { name: this.name, email: this.email, password: this.password }
@@ -89,12 +100,12 @@ export default {
 
 <style >
     .nav-wrapper {
-        padding-left: 5em;
+        padding-left: 5.5vw;
         background-color: #B80098;
     }
 
     main {
-        font-size: 10px;
+        font-size: 2vw;
         display: flex;
         flex-direction: row;
         justify-content: space-around;
@@ -105,7 +116,7 @@ export default {
     }
 
     h1 {
-        font-size: 30px;
+        font-size: 2vw;
         text-align: center;
     }
 
@@ -113,5 +124,34 @@ export default {
         margin-left: 10px;
         background-color: #B80098;
     }
+
+    @media screen and (max-width: 800px) {
+        main {
+            font-size: 4vw;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 4vw;
+            text-align: center;
+        }
+
+        .boxhome {
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .btn-large {
+            width: 60%;
+            font-size: 3vw;
+        }
+
+        .row {
+            width: 90%;
+        }
+     }
 
 </style>

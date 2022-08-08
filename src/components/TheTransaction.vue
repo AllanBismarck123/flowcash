@@ -1,7 +1,7 @@
 <template>
     <div class="button-create">
         <span>Criar Transação</span>
-        <a href="#modalCreateTransaction" @click="trateCategories" class="modal-trigger btn-floating btn-large red"><i id="add" class="material-icons">add</i></a>
+        <a href="#modalCreateTransaction" @click="trateCategories" id="btn-create" class="modal-trigger btn-floating btn-large red"><i id="add" class="material-icons">add</i></a>
     </div>
 
     <!-- CREATE TRANSACTION -->
@@ -45,9 +45,9 @@
             <h3>{{transaction.description}}</h3>
         </div>
         <div id="value">R${{transaction.value}}</div>
-        <div>
-            <a @click="this.transactionId=transaction.id" href="#modalEditTransaction" class="modal-trigger btn-floating btn-large waves-light red"><i id="edit" class="material-icons">edit</i></a>
-            <a @click="this.transactionId=transaction.id; this.transactionDescription=transaction.description" href="#modalDeleteTransaction" class="modal-trigger btn-floating btn-large red"><i id="delete" class="material-icons">delete</i></a>
+        <div id="options-buttons">
+            <a @click="this.transactionId=transaction.id" href="#modalEditTransaction" id="btn-edit" class="modal-trigger btn-floating btn-large waves-light red"><i id="edit" class="material-icons">edit</i></a>
+            <a @click="this.transactionId=transaction.id; this.transactionDescription=transaction.description" href="#modalDeleteTransaction" id="btn-delete" class="modal-trigger btn-floating btn-large red"><i id="delete" class="material-icons">delete</i></a>
         </div>
     </div>
 
@@ -202,16 +202,16 @@ export default {
         font-size: 2.5vw;
     }
 
-    #add {
-        background-color: #BF04A0;
-    }
-
     #delete {
         background-color: rgb(202, 1, 1);
     }
 
     #edit {
         background-color: #F23030;
+    }
+
+    #add {
+        background-color: #BF04A0;
     }
 
     .header {
@@ -227,7 +227,8 @@ export default {
     h3 {
         margin: 0.1vw;
         font-size: 3vw;
-    }
+    } 
+
     #date-type {
         display: flex;
         flex-direction: column;
@@ -240,13 +241,35 @@ export default {
         color: #FE6905;
         font-size: 1.5em;
     }
+
     .label-radio {
         font-size: 20px;
     }
+
     #radios {
         display: flex;
         flex-direction: row;
         gap: 2em;
+    }
+
+    @media screen and (max-width: 1000px) {
+        .btn-large {
+            width: 6vw;
+            height: 6vw;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .material-icons {
+            width: 100%;
+        }
+
+        #options-buttons {
+            display: flex;
+            flex-direction: row;
+        }
     }
 
     @media screen and (max-width: 700px) {
@@ -268,6 +291,18 @@ export default {
 
         span {
             font-size: 3.5vw;
+        }
+
+        .btn-large {
+            width: 7vw;
+            height: 7vw;
+        }
+    }
+
+    @media screen and (max-width: 350px) {
+        .btn-large {
+            width: 9vw;
+            height: 9vw;
         }
     }
 </style>

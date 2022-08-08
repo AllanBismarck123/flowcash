@@ -84,6 +84,7 @@ export default createStore({
   },
   actions: {
     registerUser(context, {name, email, password}) {
+      console.log(name, email, password)
       api
       .post("/register", {name, email, password})
       .then((response) => {

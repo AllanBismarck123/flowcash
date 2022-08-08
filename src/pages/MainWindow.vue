@@ -31,6 +31,11 @@ export default {
         this.transactions = this.$store.getters.getTransactions
         this.calculateAllValues()
     },
+    mounted() {
+        var elems = document.querySelectorAll('.modal');
+        // eslint-disable-next-line no-undef
+        this.modals = M.Modal.init(elems);
+    },
 
     methods: {
         calculateAllValues() {
