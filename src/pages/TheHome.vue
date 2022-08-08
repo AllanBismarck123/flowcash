@@ -96,11 +96,11 @@ export default {
             await this.infoUserLogged();
             if(this.token !== null) {
                 this.$router.push({path: "/main"})
-            },
+            }
+        },
 
         teste() {
-            console.log("teste")
-        }
+           console.log("teste")
         },
 
         async infoUserLogged() {
