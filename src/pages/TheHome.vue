@@ -44,7 +44,7 @@
                         <label for="password">Senha (mínimo 8 caracteres)</label>
                     </div>
                 </div>
-                <a href="#modalRegister" @click.prevent="teste" class="modal-trigger btn-large " id="register">Cadastrar</a>
+                <a href="#modalRegister" @click.prevent="newUser" class="modal-trigger btn-large " id="register">Cadastrar</a>
         </form>
 
         <!-- REGISTER -->
@@ -97,10 +97,6 @@ export default {
             if(this.token !== null) {
                 this.$router.push({path: "/main"})
             }
-        },
-
-        teste() {
-           console.log("teste")
         },
 
         async infoUserLogged() {
