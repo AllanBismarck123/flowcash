@@ -15,6 +15,7 @@ export default {
     data() {
         return {
             categories: [],
+            transactions: {},
             user: {},
             id: "",
             modals: []
@@ -24,6 +25,8 @@ export default {
         this.$store.getters.fixedToken
         await this.$store.dispatch("infoUser")
         this.user = this.$store.getters.getUser
+        await this.$store.dispatch("showTransactions", {id: this.user.id})
+        this.transactions = this.$store.getters.getTransactions
     },
     async mounted() {
         await this.showAllCategories()
@@ -45,33 +48,3 @@ export default {
     },
 }
 </script>
-
-<style scoped>
-    #category-create {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        gap: 1em;
-        padding: 1.2em;
-    }
-
-    span {
-        font-size: 2em;
-    }
-
-    #add {
-        background-color: #BF04A0;
-    }
-
-    form {
-        width: 70%;
-    }
-    label {
-        font-size: 1.4em;
-    }
-
-    .row {
-        padding: 2em;
-    }
-</style>

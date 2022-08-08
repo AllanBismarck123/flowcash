@@ -54,7 +54,7 @@ export default {
         justify-content: space-between;
         align-items: center;
         margin: 0em;
-        font-size: 1.8em;
+        font-size: 2.2vw;
         padding: 0.2vw 15vw;
     }
 
@@ -69,5 +69,21 @@ export default {
 
     #receita {
         color: #52BF4E;
+    }
+
+    @media screen and (max-width: 900px) {
+        .itens, .card-action {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0em;
+            font-size: 4vw;
+            padding: 0.2vw 10vw;
+        }
+
+        .itens {
+            padding: 0.2vw 7vw;
+        }
     }
 </style>

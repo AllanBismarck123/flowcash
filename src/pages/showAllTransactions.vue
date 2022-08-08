@@ -58,33 +58,3 @@ export default {
     },
 }
 </script>
-
-<style scoped>
-    #transaction-create {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        gap: 1em;
-        padding: 1.2em;
-    }
-
-    span {
-        font-size: 2em;
-    }
-
-    #add {
-        background-color: #BF04A0;
-    }
-
-    form {
-        width: 70%;
-    }
-    label {
-        font-size: 1.4em;
-    }
-
-    .row {
-        padding: 2em;
-    }
-</style>

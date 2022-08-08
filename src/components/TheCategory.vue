@@ -91,25 +91,20 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     .header {
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        gap: 4em;
-        padding: 0.5em 2em;
-        font-size: 1.1em;
+        gap: 4vw;
+        padding: 2vw 3vw;
         color: black;
     }
 
     h3 {
-        margin: 0.1em;
-        font-size: 1.8em;
-    }
-
-    button {
-        border: none;
+        margin: 0vw;
+        font-size: 2.5vw;
     }
 
     #delete {
@@ -120,30 +115,17 @@ export default {
         background-color: #F23030;
     }
 
-    #input-edit {
-        width: 75%;
-    }
-
-    #input-edit::placeholder {
-        font-size: 1.2em;
-        color: rgb(201, 117, 117);
-    }
-
-    #permission {
-        display: flex;
-    }
-
     .button-create {
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        gap: 1em;
-        padding: 1.2em;
+        gap: 1vw;
+        padding: 1.2vw;
     }
 
     span {
-        font-size: 2em;
+        font-size: 2.5vw;
     }
 
     #add {
@@ -154,11 +136,33 @@ export default {
         width: 70%;
     }
     label {
-        font-size: 1.4em;
+        font-size: 1.4vw;
     }
 
     .row {
-        padding: 2em;
+        padding: 2vw;
+    }
+
+    @media screen and (max-width: 700px) {
+        h3 {
+            font-size: 4.5vw;
+            padding-left: 2vw;
+        }
+
+        span {
+            font-size: 4.5vw;
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        h3 {
+            font-size: 5.5vw;
+            padding-left: 2vw;
+        }
+
+        span {
+            font-size: 5.5vw;
+        }
     }
 
 </style>

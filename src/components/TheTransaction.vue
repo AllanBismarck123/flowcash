@@ -43,7 +43,6 @@
         </div>
         <div class="card-stacked">
             <h3>{{transaction.description}}</h3>
-            <p>{{transaction.category}}</p>
         </div>
         <div id="value">R${{transaction.value}}</div>
         <div>
@@ -190,22 +189,45 @@ export default {
 </script>
 
 <style scoped>
+    .button-create {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 1vw;
+        padding: 1.2vw;
+    }
+
+    span {
+        font-size: 2.5vw;
+    }
+
+    #add {
+        background-color: #BF04A0;
+    }
+
+    #delete {
+        background-color: rgb(202, 1, 1);
+    }
+
+    #edit {
+        background-color: #F23030;
+    }
+
     .header {
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        gap: 2em;
-        padding: 0.5em 1.8em;
-        font-size: 1.1em;
+        gap: 2vw;
+        padding: 0.5vw 2vw;
+        font-size: 1.8vw;
         color: black;
     }
-
     h3 {
-        margin: 0.1em;
-        font-size: 1.5em;
+        margin: 0.1vw;
+        font-size: 3vw;
     }
-
     #date-type {
         display: flex;
         flex-direction: column;
@@ -218,14 +240,34 @@ export default {
         color: #FE6905;
         font-size: 1.5em;
     }
-
     .label-radio {
         font-size: 20px;
     }
-
     #radios {
         display: flex;
         flex-direction: row;
         gap: 2em;
+    }
+
+    @media screen and (max-width: 700px) {
+        h3 {
+            font-size: 3.5vw;
+            padding-left: 1vw;
+        }
+
+        span {
+            font-size: 3.5vw;
+        }
+    }
+
+    @media screen and (max-width: 550px) {
+        h3 {
+            font-size: 3.5vw;
+            padding-left: 0vw;
+        }
+
+        span {
+            font-size: 3.5vw;
+        }
     }
 </style>
