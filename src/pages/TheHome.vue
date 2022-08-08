@@ -44,7 +44,7 @@
                         <label for="password">Senha (mínimo 8 caracteres)</label>
                     </div>
                 </div>
-                <a @click.prevent="newUser" href="#modalRegister" class="waves-effect waves-light btn-large modal-trigger" id="register">Cadastrar</a>
+                <a href="#modalRegister" @click.prevent="newUser" class="waves-effect waves-light btn-large modal-trigger" id="register">Cadastrar</a>
         </form>
     </main>
 
@@ -73,7 +73,7 @@ export default {
         token: {}
       };
     },
-    mounted() {
+    created() {
         var elems = document.querySelectorAll('.modal');
         // eslint-disable-next-line no-undef
         this.modals = M.Modal.init(elems);

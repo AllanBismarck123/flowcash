@@ -168,17 +168,6 @@ export default {
         },
 
         async editTransaction(category_id, user_id, description, date, status, type, value, id_transaction) {
-            // const data = {
-            //     category_id: category_id, 
-            //     user_id: user_id, 
-            //     description: description, 
-            //     date: date, 
-            //     status: status, 
-            //     type: type, 
-            //     value: value, 
-            // }
-            
-            // console.log({data})
             await this.$store.dispatch("editTransaction", {category_id, user_id, description, date, status, type, value, id_transaction})
             console.log("EditTransaction")
             location.reload()
