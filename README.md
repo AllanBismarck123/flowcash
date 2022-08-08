@@ -1,9 +1,5 @@
 # flowcash
 
-## Link do projeto
-### http://flowcash-three.vercel.app/
-
-
 ## Project setup
 ```
 npm install

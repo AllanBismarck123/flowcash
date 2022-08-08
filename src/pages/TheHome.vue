@@ -73,11 +73,19 @@ export default {
         token: {}
       };
     },
+    mounted() {
+        var elems = document.querySelectorAll('.modal');
+        // eslint-disable-next-line no-undef
+        this.modals = M.Modal.init(elems);
+    },
 
     methods: {
         async newUser() {
             const data = { name: this.name, email: this.email, password: this.password }
             await this.$store.dispatch("registerUser", data)
+            this.name = ""
+            this.email = ""
+            this.password = ""
         },
 
         async loginUser() {
