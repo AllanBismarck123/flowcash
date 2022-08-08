@@ -46,17 +46,18 @@
                 </div>
                 <a href="#modalRegister" @click.prevent="newUser" class="waves-effect waves-light btn-large modal-trigger" id="register">Cadastrar</a>
         </form>
+        
+        <!-- REGISTER -->
+        <form id="modalRegister" class="modal">
+            <div class="modal-content">
+                <h4>Usuário cadastrado com sucesso! Faça o login para entrar.</h4>
+            </div>
+            <div class="modal-footer">
+                <a class="modal-close btn-flat">Fechar</a>
+            </div>
+        </form>
     </main>
 
-    <!-- REGISTER -->
-    <form id="modalRegister" class="modal">
-        <div class="modal-content">
-            <h4>Usuário cadastrado com sucesso! Faça o login para entrar.</h4>
-        </div>
-        <div class="modal-footer">
-            <a class="modal-close btn-flat">Fechar</a>
-        </div>
-    </form>
 </template>
 
 <script>
