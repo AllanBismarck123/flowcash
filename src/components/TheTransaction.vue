@@ -57,12 +57,30 @@
     <!-- EDIT TRANSACTION -->
     <form id="modalEditTransaction" class="modal">
         <div class="modal-content">
-            <label>Digite a nova descrição da transação</label>
-            <input v-model="newName" type="text" class="validate" id="name">
+            <input v-model="description" placeholder="Digite a nova descrição da transação" type="text" class="validate" ><br />
+            <label>Selecione a categoria</label>
+            <div class="input-field col s12">
+                <select class="browser-default" v-model="category_id">
+                    <option disabled selected></option>
+                    <option v-for="category in categories" :key="category.id">{{category.name}}</option>
+                </select>
+            </div>
+            <input placeholder="Selecione a data" type="date" lang="pt-br" format="dd/mm/yyyy" v-model="date" ><br/>
+            <form id="radios">
+                <label>
+                    <input value="Despesa" class="with-gap" name="group1" type="radio" checked />
+                    <span class="label-radio">Despesa</span>
+                </label>
+                <label>
+                    <input value="Receita" class="with-gap" name="group1" type="radio" />
+                    <span class="label-radio">Receita</span>
+                </label>
+            </form>
+            <input v-model="value" placeholder="Digite o valor da transação" type="text" class="validate" >
         </div>
         <div class="modal-footer">
             <a class="modal-close btn-flat">Cancelar</a>
-            <a class="modal-close btn-flat">Atualizar transação</a>
+            <a @click="editTransaction(getCategoryIdAndType(category_id), this.user_id, this.description, this.date, this.status, this.typeTransaction, this.value, this.transactionId)" class="modal-close btn-flat">Atualizar transação</a>
         </div>
     </form>
 
@@ -148,14 +166,24 @@ export default {
                 this.typeTransaction = "Receita"
             }
             return categoryId;
-        }
+        },
 
-        // async editCategory(name, id) {
-        //     await this.$store.dispatch("editCategory", {name: name, id: id})
-        //     this.showAllCategories()
-        //     console.log("editCategory " + this.categories[0])
-        //     this.newName = ""
-        // }, 
+        async editTransaction(category_id, user_id, description, date, status, type, value, id_transaction) {
+            // const data = {
+            //     category_id: category_id, 
+            //     user_id: user_id, 
+            //     description: description, 
+            //     date: date, 
+            //     status: status, 
+            //     type: type, 
+            //     value: value, 
+            // }
+            
+            // console.log({data})
+            await this.$store.dispatch("editTransaction", {category_id, user_id, description, date, status, type, value, id_transaction})
+            console.log("EditTransaction")
+            location.reload()
+        }, 
     },
 
 }
@@ -183,9 +211,9 @@ export default {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        color: #FE6905;
+        color: #bb6c22;
     }
-
+        
     #value {
         color: #FE6905;
         font-size: 1.5em;

@@ -78,16 +78,13 @@ export default {
     },
     methods: {
         async deleteCategory(id) {
-            console.log(id)
             await this.$store.dispatch("deleteCategory", {id: id})
             this.showAllCategories()
-            console.log("deleteCategory " + this.categories[0])
         },
 
         async editCategory(name, id) {
             await this.$store.dispatch("editCategory", {name: name, id: id})
             this.showAllCategories()
-            console.log("editCategory " + this.categories[0])
             this.newName = ""
         }, 
     },

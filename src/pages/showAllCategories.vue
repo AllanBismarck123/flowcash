@@ -24,7 +24,6 @@ export default {
         this.$store.getters.fixedToken
         await this.$store.dispatch("infoUser")
         this.user = this.$store.getters.getUser
-        console.log("created " + this.$store.getters.getToken)
     },
     async mounted() {
         await this.showAllCategories()

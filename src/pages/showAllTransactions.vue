@@ -29,7 +29,6 @@ export default {
         this.user = this.$store.getters.getUser
         this.categories = this.$store.getters.getCategories
         await this.showAllTransactions(this.user.id)
-        console.log("created " + this.$store.getters.getToken)
     },
     async mounted() {
         var elems = document.querySelectorAll('.modal');
@@ -52,7 +51,7 @@ export default {
 
         async createTransaction(category_id, user_id, description, date, status, type, value) {
             console.log(category_id, user_id, description, date, status, type, value)
-            await this.$store.dispatch("createTransaction", {category_id: category_id, user_id: user_id, description: description, date: date, status: status, type: type, value: value })
+            await this.$store.dispatch("createTransaction", {category_id: category_id, user_id: user_id, description: description, date: date, status: status, type: type, value: value})
             this.transactions = this.$store.getters.getTransactions
             location.reload()
         },
@@ -61,7 +60,7 @@ export default {
 </script>
 
 <style scoped>
-    #category-create {
+    #transaction-create {
         display: flex;
         flex-direction: row;
         align-items: center;

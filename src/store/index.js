@@ -147,7 +147,6 @@ export default createStore({
         .then((response) => {
             if (response.status === 200) {
               context.commit("SET_EDIT", response.data);
-              console.log(this.state.categories)
             } else {
               console.error(response.error);
             }
@@ -203,7 +202,6 @@ export default createStore({
       },
       
       async showTransactions(context, {id}) {
-        console.log(id)
         await api
         .get('users/' + id + '/transactions')
         .then((response) => {
@@ -214,6 +212,19 @@ export default createStore({
             }
           });
       }, 
+
+      async editTransaction(context, {category_id, user_id, description, date, status, type, value, id_transaction}) {
+        console.log("store editTransaction" + category_id, user_id, description, date, status, type, value, id_transaction)
+        await api
+        .put('/transactions/' + id_transaction, {category_id, user_id, description, date, status, type, value})
+        .then((response) => {
+            if (response.status === 200) {
+              context.commit("SET_EDIT", response.data);
+            } else {
+              console.error(response.error);
+            }
+          });
+      },
   },
   modules: {},
 });

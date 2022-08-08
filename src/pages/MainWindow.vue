@@ -50,7 +50,6 @@ export default {
             let month = String(date.getMonth() + 1).padStart(2, '0');
             let year = date.getFullYear();
             let today = day + '/' + month + '/' + year;
-            console.log(today);
 
             transactionsLocal.forEach(element => {
                 element.date = this.tratamentDates(element.date)
