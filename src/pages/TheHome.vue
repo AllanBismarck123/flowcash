@@ -44,9 +44,9 @@
                         <label for="password">Senha (mínimo 8 caracteres)</label>
                     </div>
                 </div>
-                <a href="#modalRegister" @click.prevent="newUser" class="waves-effect waves-light btn-large modal-trigger" id="register">Cadastrar</a>
+                <a href="#modalRegister" @click.prevent="teste" class="modal-trigger waves-effect waves-light btn-large " id="register">Cadastrar</a>
         </form>
-        
+
         <!-- REGISTER -->
         <form id="modalRegister" class="modal">
             <div class="modal-content">
@@ -96,7 +96,11 @@ export default {
             await this.infoUserLogged();
             if(this.token !== null) {
                 this.$router.push({path: "/main"})
-            }
+            },
+
+        teste() {
+            console.log("teste")
+        }
         },
 
         async infoUserLogged() {
